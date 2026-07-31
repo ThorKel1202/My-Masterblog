@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Edit Blog Post</h1>
+
+    <div class="post">
+        <form method="POST" action="{{ url_for('update', post_id=post.id) }}">
+
+            <p>
+                <label for="title"><strong>Title</strong></label><br>
+                <input type="text" id="title" name="title"
+                       value="{{ post.title }}"
+                       required style="width: 100%;">
+            </p>
+
+            <p>
+                <label for="author"><strong>Author</strong></label><br>
+                <input type="text" id="author" name="author"
+                       value="{{ post.author }}"
+                       required style="width: 100%;">
+            </p>
+
+            <p>
+                <label for="content"><strong>Content</strong></label><br>
+                <textarea id="content" name="content" rows="6"
+                          required style="width: 100%;">{{ post.content }}</textarea>
+            </p>
+
+            <p>
+                <button type="submit">💾 Save post</button>
+                <a href="{{ url_for('index') }}" style="margin-left: 10px;"></a>
+                <button type="button" onclick="window.location.href='{{ url_for('index') }}'">
+                    🔁 Back to Index
+                </button>
+            </p>
+
+        </form>
+    </div>
+
+</body>
+</html>

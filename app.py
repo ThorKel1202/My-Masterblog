@@ -14,6 +14,14 @@ def save_posts(posts):
     with open("blog_data.json", "w", encoding="utf-8") as file:
         json.dump(posts, file, indent=4, ensure_ascii=False)
         
+        
+def fetch_post_by_id(post_id):
+    posts = load_posts()
+    for post in posts:
+        if post["id"] == post_id:
+            return post
+    return None
+        
 
 @app.route('/')
 def index():
@@ -69,6 +77,38 @@ def delete(post_id):
 
     # Back to index page
     return redirect(url_for('index'))
+
+
+@app.route('/update/<int:post_id>', methods=['GET', 'POST'])
+def update(post_id):
+    posts = load_posts()
+    post = fetch_post_by_id(post_id)
+
+    if post is None:
+        return "Post not found", 404
+
+    if request.method == 'POST':
+        # read data from form
+        title = request.form.get('title')
+        content = request.form.get('content')
+        author = request.form.get('author')
+
+        # updates post
+        for p in posts:
+            if p["id"] == post_id:
+                p["title"] = title
+                p["content"] = content
+                p["author"] = author
+                break
+
+        # Saves new data to JSON file via save_posts function
+        save_posts(posts)
+
+        # Back to index page
+        return redirect(url_for('index'))
+
+    # GET → Show form with current data
+    return render_template('update.html', post=post)
 
 
 if __name__ == '__main__':

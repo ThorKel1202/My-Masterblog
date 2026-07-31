@@ -15,6 +15,17 @@
                 <p><em>Written by {{ post.author }}</em></p>
                 <p>{{ post.content }}</p>
                 <p>
+                    <!--<a href="{{ url_for('like', post_id=post.id) }}">
+                        👍 Like
+                    </a>
+                    <button type="button"
+                            onclick="window.location.href='{{ url_for('like', post_id=post.id) }}'">
+                        👍 Like post
+                    </button> -->
+                    <button type="button"
+                            onclick="window.location.href='{{ url_for('like', post_id=post.id) }}'">
+                        ❤️ Likes: {{ post.likes or 0 }}
+                    </button>
                     <!-- Edit Button -->
                     <button type="button"
                             onclick="window.location.href='{{ url_for('update', post_id=post.id) }}'">

@@ -33,9 +33,9 @@ def index():
 def add():
     if request.method == 'POST':
         # Takes new data from form
+        author = request.form.get('author')
         title = request.form.get('title')
         content = request.form.get('content')
-        author = request.form.get('author')
 
         # Load existing posts from JSON file via load_posts function
         posts = load_posts()
@@ -48,9 +48,10 @@ def add():
         
         new_post = {
             "id": new_id,
+            "author": author,
             "title": title,
             "content": content,
-            "author": author
+            "likes": 0
         }
         
         posts.append(new_post)
@@ -109,6 +110,24 @@ def update(post_id):
 
     # GET → Show form with current data
     return render_template('update.html', post=post)
+
+
+@app.route('/like/<int:post_id>')
+def like(post_id):
+    posts = load_posts()
+
+    for post in posts:
+        if post["id"] == post_id:
+            # Falls likes noch nicht existiert
+            if "likes" not in post:
+                post["likes"] = 0
+
+            post["likes"] += 1
+            break
+
+    save_posts(posts)
+
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

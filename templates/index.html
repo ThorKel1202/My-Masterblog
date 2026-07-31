@@ -20,7 +20,9 @@
         <p>No posts available.</p>
     {% endif %}
     <p>
-        <a href="{{ url_for('add') }}">➕ Neuen Beitrag schreiben</a>
+        <button type="button" onclick="window.location.href='{{ url_for('add') }}'">
+            ➕ Create a new post here
+        </button>
     </p>
 </body>
 </html>

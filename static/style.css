@@ -25,3 +25,22 @@ h1 {
 .post p {
     margin: 10px 0;
 }
+
+input, textarea {
+    border: 1px solid #DDD;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4F4F4F;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+  color: lightgreen;
+}

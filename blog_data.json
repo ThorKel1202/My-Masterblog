@@ -22,5 +22,11 @@
         "title": "Happy vacation",
         "content": "Can't wait for it!",
         "author": "tk"
+    },
+    {
+        "id": 5,
+        "title": "News of me",
+        "content": "Hello world!",
+        "author": "tk"
     }
 ]

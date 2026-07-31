@@ -9,24 +9,34 @@
 <body>
     <h1>Create a new blog post!</h1>
 
-    <form method="POST" action="/add">
-        <label>Title:</label><br>
-        <label>
-            <input type="text" name="title" required>
-        </label><br><br>
+    <div class="post">
+        <form method="POST" action="{{ url_for('add') }}">
 
-        <label>Author:</label><br>
-        <label>
-            <input type="text" name="author" required>
-        </label><br><br>
+            <p>
+                <label for="title"><strong>Title</strong></label><br>
+                <input type="text" id="title" name="title" required style="width: 100%;">
+            </p>
 
-        <label>Content:</label><br>
-        <label>
-            <textarea name="content" rows="5" required></textarea>
-        </label><br><br>
+            <p>
+                <label for="author"><strong>Author</strong></label><br>
+                <input type="text" id="author" name="author" required style="width: 100%;">
+            </p>
 
-        <button type="submit">Save post</button>
-    </form>
+            <p>
+                <label for="content"><strong>Content</strong></label><br>
+                <textarea id="content" name="content" rows="6" required style="width: 100%;"></textarea>
+            </p>
+
+            <p>
+                <button type="submit">💾 Save post</button>
+                <a href="{{ url_for('index') }}" style="margin-left: 10px;"></a>
+                <button type="button" onclick="window.location.href='{{ url_for('index') }}'">
+                    ⬅️ Back to Index
+                </button>
+            </p>
+
+        </form>
+    </div>
 
 </body>
 </html>
